@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parcel Management System v3</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- LOGIN SCREEN -->
+  <div id="loginScreen" class="login-container">
+    <h2>🔐 Login</h2>
+    <input type="text" id="username" placeholder="Username" required />
+    <input type="password" id="password" placeholder="Password" required />
+    <button id="loginBtn">Login</button>
+    <p class="note">Demo Users: admin/12345, staff/1234, viewer/0000</p>
+  </div>
+
+  <!-- MAIN APP -->
+  <div id="mainApp" class="hidden">
+    <header>
+      <h1>📦 Parcel Management System v3</h1>
+      <div class="header-right">
+        <button id="themeToggle">🌙</button>
+        <button id="logoutBtn">Logout</button>
+      </div>
+    </header>
+
+    <main>
+      <!-- DASHBOARD -->
+      <section class="dashboard">
+        <div class="card total">
+          <h3>Total Parcels</h3>
+          <p id="totalParcels">0</p>
+        </div>
+        <div class="card pending">
+          <h3>Pending</h3>
+          <p id="pendingParcels">0</p>
+        </div>
+        <div class="card delivered">
+          <h3>Delivered</h3>
+          <p id="deliveredParcels">0</p>
+        </div>
+      </section>
+
+      <!-- CHART -->
+      <section class="chart-section">
+        <div class="chart-container">
+          <canvas id="parcelChart"></canvas>
+        </div>
+      </section>
+
+      <!-- PARCEL FORM -->
+      <section class="form-section">
+        <h2>Add / Update Parcel</h2>
+        <form id="parcelForm">
+          <input type="hidden" id="editIndex">
+          <input type="text" id="parcelId" placeholder="Parcel ID" required>
+          <input type="text" id="sender" placeholder="Sender Name" required>
+          <input type="text" id="receiver" placeholder="Receiver Name" required>
+          <input type="text" id="destination" placeholder="Destination" required>
+          <select id="status" required>
+            <option value="Pending">Pending</option>
+            <option value="In Transit">In Transit</option>
+            <option value="Delivered">Delivered</option>
+          </select>
+          <button type="submit">💾 Save Parcel</button>
+        </form>
+      </section>
+
+      <!-- TABLE -->
+      <section class="table-section">
+        <div class="controls">
+          <input type="text" id="search" placeholder="Search parcels...">
+          <select id="filterStatus">
+            <option value="All">All</option>
+            <option value="Pending">Pending</option>
+            <option value="In Transit">In Transit</option>
+            <option value="Delivered">Delivered</option>
+          </select>
+          <div class="buttons">
+            <button id="exportBtn">⬇️ Export JSON</button>
+            <input type="file" id="importFile" accept=".json" hidden>
+            <button id="importBtn">⬆️ Import JSON</button>
+            <button id="printBtn">🖨️ Print Report</button>
+          </div>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Sender</th>
+              <th>Receiver</th>
+              <th>Destination</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="parcelTable"></tbody>
+        </table>
+      </section>
+
+      <!-- ACTIVITY LOG -->
+      <section class="activity-log">
+        <h2>📝 Activity Log</h2>
+        <div id="activityLog"></div>
+      </section>
+
+    </main>
+
+    <footer>
+      <p>📮 Parcel Management System v3 © 2025</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
